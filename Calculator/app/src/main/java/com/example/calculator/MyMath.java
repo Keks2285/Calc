@@ -13,7 +13,7 @@ public class MyMath {
 
     public Boolean zap;
     public  String primer;
-
+//new coment 24.10.21
     private static Map<String, Integer> prioryti = new HashMap<String, Integer>(){{
         prioryti.put("+", 1);
         prioryti.put("-", 1);
