@@ -25,12 +25,9 @@ public class MainActivity extends AppCompatActivity {
     Button step2;
     Button Cor;
     TextView TV;
-    int a=1;
-    int leng1=0;
-    int leng2=0;
-    char deistv=' ';
-    String B1;
-    String B2;
+    TextView dei;
+    TextView otv;
+int a = 1;
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outstate)
     {
@@ -61,6 +58,8 @@ public class MainActivity extends AppCompatActivity {
         umnoz = findViewById(R.id.umn);
         del = findViewById(R.id.del);
         TV =findViewById(R.id.tV);
+        dei = findViewById(R.id.dei);
+        otv = findViewById(R.id.otv);
     }
 
 
@@ -68,89 +67,152 @@ public class MainActivity extends AppCompatActivity {
         Button b = (Button) view;
         switch (b.getId()) {
             case R.id.b1:
+                if (a==1)
                 TV.setText(TV.getText()+"1");
+                else if (a==2) otv.setText(otv.getText()+"1");
                 break;
-            case R.id.b2:{ TV.setText(TV.getText()+"2");leng1++;}
+            case R.id.b2:{   if (a==1)
+                TV.setText(TV.getText()+"2");
+            else if (a==2) otv.setText(otv.getText()+"2");}
                 break;
-            case R.id.b3:{ TV.setText(TV.getText()+"3");leng1++;}
+            case R.id.b3:{   if (a==1)
+                TV.setText(TV.getText()+"3");
+            else if (a==2) otv.setText(otv.getText()+"3");}
                 break;
-            case R.id.b4: {TV.setText(TV.getText()+"4");leng1++;}
+            case R.id.b4: {  if (a==1)
+                TV.setText(TV.getText()+"4");
+            else if (a==2) otv.setText(otv.getText()+"4");}
                 break;
-            case R.id.b5:{ TV.setText(TV.getText()+"5");leng1++;}
+            case R.id.b5:{   if (a==1)
+                TV.setText(TV.getText()+"5");
+            else if (a==2) otv.setText(otv.getText()+"5");;}
                 break;
-            case R.id.b6:{ TV.setText(TV.getText()+"6");leng1++;}
+            case R.id.b6:{   if (a==1)
+                TV.setText(TV.getText()+"6");
+            else if (a==2) otv.setText(otv.getText()+"6");}
                 break;
-            case R.id.b7:{ TV.setText(TV.getText()+"7");leng1++;}
+            case R.id.b7:{   if (a==1)
+                TV.setText(TV.getText()+"7");
+            else if (a==2) otv.setText(otv.getText()+"7");}
                 break;
-            case R.id.b8:{ TV.setText(TV.getText()+"8");leng1++;}
+            case R.id.b8:{   if (a==1)
+                TV.setText(TV.getText()+"8");
+            else if (a==2) otv.setText(otv.getText()+"8");}
                 break;
-            case R.id.b9:{ TV.setText(TV.getText()+"9");leng1++;}
+            case R.id.b9:{   if (a==1)
+                TV.setText(TV.getText()+"9");
+            else if (a==2) otv.setText(otv.getText()+"9");}
                 break;
-            case R.id.plus: {
-                leng1 =0;
-                B1=TV.getText().toString();
-                TV.setText(TV.getText() + "+");
-                deistv='+';
-                a+=1;
-
-            }break;
-            case R.id.minus: {
-                if (TV.getText() != null || TV.getText().charAt(TV.getText().length() - 1) != '-') {
-                    a++;
-                }
-                if ( !TV.getText().toString().endsWith("--")) {
-                    B1=TV.getText().toString();
-                    TV.setText(TV.getText() + "-");
-                    leng1 =0;
-                    deistv='-';
-                }break;
+            case R.id.plus:
+            {
+                dei.setText("+");
+                a=2;
+                break;
             }
-            case R.id.umn: {
-                B1=TV.getText().toString();
-                TV.setText(TV.getText() + "*");
-                a+=1;
-                leng1 =0;
-                deistv='*';
+            case R.id.minus:
+            {
+                dei.setText("-");
+                a=2;
+                break;
+            }
+            case R.id.umn:
+            {
+                dei.setText("*");
+                a=2;
                 break;
             }
             case R.id.del:
             {
-                B1=TV.getText().toString();
-                TV.setText(TV.getText()+"/");
-                a++;
-                leng1 =0;
-                deistv='/';
-                break;}
+                dei.setText("/");
+                a=2;
+                break;
+            }
+
         }
     }
     public void Ravno(View view)
     {
-        B2=B1;
-        if (B1!=B2){
-        B2=TV.getText().toString().replace(B1,"").substring(1);}
-        double a1 = Double.parseDouble(B1);
-        double a2 = Double.parseDouble(B2);
-        double otv=0;
-        B1=B2="";
-switch (deistv)
-{
-    case '+': otv=a1+a2; break;
-    case '-': otv=a1-a2; break;
-    case '*': otv=a1*a2; break;
-    case '/': otv=a1/a2; break;
-}
-        TV.setText(Double.toString(otv));
+      a=1;
+      double o1 = Double.parseDouble(TV.getText().toString());
+        double o2 = Double.parseDouble(otv.getText().toString());
+        switch (dei.getText().toString())
+        {
+            case"+":
+            {
+                double s = o1+o2;
+                otv.setText(Double.toString(s));
+                break;
+            }
+            case "-":
+        {
+            double s = o1-o2;
+            otv.setText(Double.toString(s));
+            break;
+        }
+            case "*":
+        {
+            double s = o1*o2;
+            otv.setText(Double.toString(s));
+            break;
+        }
+            case "/":
+            {
+                double s = o1/o2;
+                otv.setText(Double.toString(s));
+                break;
+            }
 
+        }
+        dei.setText("");
+        TV.setText("");
         //TV.setText(Long.toString(Long.parseLong(TV.getText().toString(),10)));
         //TV.setText(Long.toString(Long.valueOf(TV.getText().toString()).longValue()));
     }
 public void ClearAll(View view)
 {
     TV.setText("");
-    B1="";
-    B2="";
+
 }
 
     }
 
 
+//    @RequiresApi(api = Build.VERSION_CODES.N)
+//    private void btnClick(View view) {
+//        Button b = (Button) view;
+//
+//
+//        if (Arrays.stream(arrayOperathions).anyMatch(b.getText().toString()::equals))
+//        {
+//            zap = true;
+//        }
+//
+//        if (b.getText().toString().equals("-"))
+//        {
+//            primer += "0";
+//        }
+//        primer += b.getText().toString();
+//        txtResult.setText(primer);
+//    }
+//
+//    @RequiresApi(api = Build.VERSION_CODES.N)
+//    private void btnClickReshenie(View view) {
+//        primer = Reshenie(primer);
+//        if(primer.substring(primer.length()-2).equals(".0")){
+//            primer = primer.substring(0, primer.length()-2);
+//        }
+//        txtResult.setText(primer);
+//    }
+//
+//    private void btnClickClearTextView(View view) {
+//        primer = "";
+//        txtResult.setText(primer);
+//    }
+//
+//    private void btnClickDeleteLastChar(View view) {
+//        if(primer.length() > 0) {
+//            primer = primer.substring(0, primer.length() - 1);
+//            txtResult.setText(primer);
+//        }
+//    }
+//
